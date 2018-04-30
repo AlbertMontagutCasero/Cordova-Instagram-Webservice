@@ -3,28 +3,26 @@
 
 	include 'Connection.php';
 
-	$connection = new Conexion();
+	$connection = new Connection();
 	$cnn = $connection->getConexion();
 
-	if(isset($_POST["username"])){
+	if(isset($_POST["email"])){
 
-		$username = $_POST["username"];
+		$email = $_POST["email"];
 		$password = $_POST["password"];
-		$repeatPassword = $_POST["repeatPassword"];
 
-
-		$sql = "INSERT INTO user(username, password) VALUES (?,?);";
+		$sql = "INSERT INTO usuario(email, pass) VALUES (?,?);";
 		$statement = $cnn->prepare( $sql );
 
 		//enlace entre los parametros de la consulta SQL con los valores obtenidos del formulario
-		$statement->bindParam(1 , $username , PDO::PARAM_STR);
+		$statement->bindParam(1 , $email , PDO::PARAM_STR);
 		$statement->bindParam(2 , $password , PDO::PARAM_STR);
 		echo $statement->execute() ? "Registrado" : "Error";
 		
 		$statement->closeCursor();
 	}
 
-	$conexion = null
+	$conexion = null;
 /*
 echo "server: Datos obtenidos del formulario<br>";
 echo "Username: $username <br>";
@@ -84,5 +82,4 @@ else {
  echo ($resposta);
 }
 */
-?>
 

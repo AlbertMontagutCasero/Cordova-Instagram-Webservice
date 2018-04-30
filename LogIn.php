@@ -2,7 +2,7 @@
 	header("access-control-allow-origin: *");
 
 	include 'Connection.php';
-	$connection = new Conexion();
+	$connection = new Connection();
 	$cnn = $connection->getConexion();
 
 	if(isset($_POST["username"])){
@@ -10,7 +10,7 @@
 		$username = $_POST["username"];
 		$password = $_POST["password"];
 
-		$sql = "select * from user where username = ? and password = ?";
+		$sql = "select * from usuario where email = ? and pass = ?";
 		$statement = $cnn->prepare( $sql );
 
 		//enlace entre los parametros de la consulta SQL con los valores obtenidos del formulario
@@ -26,5 +26,4 @@
 		$statement->closeCursor();
 	}
 
-	$conexion = null
-?>
+	$conexion = null;

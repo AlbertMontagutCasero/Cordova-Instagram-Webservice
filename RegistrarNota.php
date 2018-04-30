@@ -3,7 +3,7 @@
 
 	include 'Connection.php';
 
-	$connection = new Conexion();
+	$connection = new Connection();
 	$cnn = $connection->getConexion();
 
 	if(isset($_POST["json"])){
