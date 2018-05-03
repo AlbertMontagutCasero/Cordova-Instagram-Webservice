@@ -1,29 +1,44 @@
 <?php
-	header("access-control-allow-origin: *");
+header("access-control-allow-origin: *");
 
-	include 'Connection.php';
-	$connection = new Connection();
-	$cnn = $connection->getConexion();
+include 'Connection.php';
+$connection = new Connection();
+$cnn        = $connection->getConexion();
 
-	if(isset($_POST["username"])){
+if (isset($_POST["username"]))
+{
 
-		$username = $_POST["username"];
-		$password = $_POST["password"];
+    $username = $_POST["username"];
+    $password = $_POST["password"];
 
-		$sql = "select * from usuario where email = ? and pass = ?";
-		$statement = $cnn->prepare( $sql );
+    $sql       = "select id from usuario where email = ? and pass = ?";
+    $statement = $cnn->prepare($sql);
 
-		//enlace entre los parametros de la consulta SQL con los valores obtenidos del formulario
-		$statement->bindParam(1 , $username , PDO::PARAM_STR);
-		$statement->bindParam(2 , $password , PDO::PARAM_STR);
-		if($statement->execute()){
-			echo $statement->rowCount();
-		}else{
-			echo "Error";
-		}
+    //enlace entre los parametros de la consulta SQL con los valores obtenidos del formulario
+    $statement->bindParam(1,
+        $username,
+        PDO::PARAM_STR);
+    $statement->bindParam(2,
+        $password,
+        PDO::PARAM_STR);
+    if ($statement->execute())
+    {
+        while (
+        $resultado = $statement->fetch(PDO::FETCH_ASSOC))
+        {
+            $data["data"][] = $resultado;
+        }
+        print_r($data,
+            true);
+        echo json_encode($data);
+    }
+    else
+    {
+        echo "Error";
+    }
 
 
-		$statement->closeCursor();
-	}
+    $statement->closeCursor();
+}
 
-	$conexion = null;
+$conexion = null;
