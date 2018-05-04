@@ -6,16 +6,18 @@ include 'Connection.php';
 $connection = new Connection();
 $cnn        = $connection->getConexion();
 
-if (isset($_POST["json"]))
+//TODO CHECK
+if (isset($_POST["id_photo"]))
 {
+    $idPhotoToDelete = $_POST["id_photo"];
 
-    $sql       = "delete from note where idNota = ?;";
+    $sql       = "DELETE FROM `photo` WHERE id = ?;";
     $statement = $cnn->prepare($sql);
     //enlace entre los parametros de la consulta SQL con los valores obtenidos del formulario
     $statement->bindParam(1,
-        $_POST["json"],
+        $idPhotoToDelete,
         PDO::PARAM_STR);
-    echo $statement->execute() ? "Nota Borrada" : "Error";
+    echo $statement->execute() ? "Foto Borrada" : "Error";
 
     $statement->closeCursor();
 }

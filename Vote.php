@@ -5,10 +5,6 @@ include 'Connection.php';
 $conexion = new Connection();
 $cnn      = $conexion->getConexion();
 
-
-$idPhoto = $_POST["id_photo"];
-$idUser  = $_POST["id_user"];
-$score   = $_POST["score"];
 if (
     isset($_POST["id_photo"])
     && isset($_POST["id_user"])
