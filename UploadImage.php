@@ -27,14 +27,18 @@ if (
 }
 
 if (
-    !isset($_POST["hashtag"])
-    && !isset($_POST[""])
-    && !isset($_POST[""])
-    && !isset($_POST[""])
+    !isset($_POST["hashtags"])
+    && !isset($_POST["id_user"])
 )
 {
     echo "ERROR";
+    return;
 }
+
+$hashtags = json_decode($_POST['hashtags']);
+$idUser = $_POST["id_user"];
+var_dump($hashtags);
+echo $idUser;
 
 if ($_FILES["file"]["error"] > 0)
 {
@@ -42,7 +46,7 @@ if ($_FILES["file"]["error"] > 0)
     return;
 }
 
-if (file_exists("upload/" . $_FILES["file"]["name"]))
+if (file_exists("uploads/" . $_FILES["file"]["name"]))
 {
     echo $_FILES["file"]["name"] . " <span id='invalid'><b>already exists.</b></span> ";
 } else
