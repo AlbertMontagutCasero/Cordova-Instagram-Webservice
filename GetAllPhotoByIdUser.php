@@ -35,6 +35,11 @@ if (isset($_POST["id_user"]))
 
     if ($statement->execute())
     {
+        if($statement->rowCount() <= 0){
+            echo "-1";
+            return;
+        }
+
         while (
         $resultado = $statement->fetch(PDO::FETCH_ASSOC))
         {

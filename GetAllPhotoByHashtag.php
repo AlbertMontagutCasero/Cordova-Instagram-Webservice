@@ -22,7 +22,7 @@ if (isset($_POST["id"]))
                 photo_tiene_hashtag
             INNER JOIN photo ON photo_tiene_hashtag.id_photo = photo.id
             INNER JOIN hash_tag ON hash_tag.id = photo_tiene_hashtag.id_hash_tag
-            INNER JOIN usuario_vota_photo on usuario_vota_photo.id_photo = photo.id
+            LEFT JOIN usuario_vota_photo on usuario_vota_photo.id_photo = photo.id
             WHERE
                 photo_tiene_hashtag.id_hash_tag = ?
                 GROUP by usuario_vota_photo.id_photo";

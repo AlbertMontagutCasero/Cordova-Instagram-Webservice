@@ -6,7 +6,7 @@ include 'Connection.php';
 $connection = new Connection();
 $cnn        = $connection->getConexion();
 
-if (isset($_POST["email"]))
+if (isset($_POST["email"]) && isset($_POST["password"]))
 {
 
     $email    = $_POST["email"];

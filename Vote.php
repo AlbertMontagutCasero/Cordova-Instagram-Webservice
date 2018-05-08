@@ -3,7 +3,7 @@ header("access-control-allow-origin: *");
 include 'Connection.php';
 
 $conexion = new Connection();
-$cnn      = $conexion->getConexion();
+$cnn = $conexion->getConexion();
 
 if (
     isset($_POST["id_photo"])
@@ -12,8 +12,8 @@ if (
 )
 {
     $idPhoto = $_POST["id_photo"];
-    $idUser  = $_POST["id_user"];
-    $score   = $_POST["score"];
+    $idUser = $_POST["id_user"];
+    $score = $_POST["score"];
 
     //TODO REFACTOR! This will generate a technical debt over 9000
 
@@ -35,31 +35,18 @@ if (
         $idPhoto,
         PDO::PARAM_STR);
 
-    if ($statement->execute())
-    {
-        echo $statement->rowCount();
-    }
-    else
-    {
-        echo "Error";
-    }
     // si se puede ejecutar sin errores
     if ($statement->execute())
     {
-
         //si ya hay un registro
         if (
             $statement->rowCount()
             > 0
         )
         {
-            while (
-            $resultado = $statement->fetch(PDO::FETCH_ASSOC))
+            while ($resultado = $statement->fetch(PDO::FETCH_ASSOC))
             {
-                if (
-                    $resultado["score"]
-                    == $score
-                )
+                if ($resultado["score"] == $score)
                 {
                     echo "-1";
                     return;
@@ -92,8 +79,7 @@ if (
                 echo "Update: ok";
             }
 
-        }
-        else
+        } else
         {
             $sql
                 = "INSERT INTO 
@@ -120,9 +106,7 @@ if (
                 echo "Insert: ok";
             }
         }
-
-    }
-    else
+    } else
     {
         echo "Error";
     }
