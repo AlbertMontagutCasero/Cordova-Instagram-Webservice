@@ -16,7 +16,6 @@ if (
     $score = $_POST["score"];
 
     //TODO REFACTOR! This will generate a technical debt over 9000
-
     $sql
         = "SELECT
                 *

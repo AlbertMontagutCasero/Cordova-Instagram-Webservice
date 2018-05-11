@@ -6,7 +6,6 @@ include 'Connection.php';
 $connection = new Connection();
 $cnn        = $connection->getConexion();
 
-//TODO CHECK
 if (isset($_POST["id_photo"]))
 {
     $idPhotoToDelete = $_POST["id_photo"];

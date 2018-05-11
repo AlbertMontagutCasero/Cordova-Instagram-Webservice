@@ -9,7 +9,6 @@ $sql       = "SELECT * FROM hash_tag;";
 $statement = $cnn->prepare($sql);
 $valor     = $statement->execute();
 
-//si al ejecutar la consulta todo va bien
 if ($valor)
 {
     while (
